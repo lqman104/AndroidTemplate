@@ -43,6 +43,7 @@ dependencies {
     implementation(AndroidDependencies.AndroidX.Compose.ui)
     implementation(AndroidDependencies.AndroidX.Compose.graphics)
     implementation(AndroidDependencies.AndroidX.Compose.toolingPreview)
+    debugImplementation(AndroidDependencies.AndroidX.Compose.Test.tooling)
     implementation(AndroidDependencies.AndroidX.Compose.Material.plugin)
 
 }
