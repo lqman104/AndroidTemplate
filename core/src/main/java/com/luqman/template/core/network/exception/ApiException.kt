@@ -1,6 +1,6 @@
 package com.luqman.template.core.network.exception
 
-import com.luqman.template.core.model.UiText
+import com.luqman.template.core.model.ResourceText
 import com.luqman.template.core.R
 import com.luqman.template.core.network.exception.ApiException.NoConnectionError
 import com.luqman.template.core.network.exception.ApiException.TimeoutError
@@ -21,26 +21,29 @@ import java.io.IOException
  */
 sealed class ApiException : IOException() {
 
-    abstract val errorMessage: UiText
+    abstract val errorMessage: ResourceText
 
     object TimeoutError : ApiException() {
-        override val errorMessage: UiText
-            get() = UiText.StringResource(R.string.timeout_error_exception)
+        private fun readResolve(): Any = TimeoutError
+        override val errorMessage: ResourceText
+            get() = ResourceText.StringId(R.string.timeout_error_exception)
     }
 
     object NoConnectionError : ApiException() {
-        override val errorMessage: UiText
-            get() = UiText.StringResource(R.string.no_connection_error_exception)
+        private fun readResolve(): Any = NoConnectionError
+        override val errorMessage: ResourceText
+            get() = ResourceText.StringId(R.string.no_connection_error_exception)
     }
 
     object JsonParsingException : ApiException() {
-        override val errorMessage: UiText
-            get() = UiText.StringResource(R.string.json_parsing_error_exception)
+        private fun readResolve(): Any = JsonParsingException
+        override val errorMessage: ResourceText
+            get() = ResourceText.StringId(R.string.json_parsing_error_exception)
     }
 
     data class UnknownError(
         val throwable: Throwable,
-        override val errorMessage: UiText = UiText.StringResource(R.string.unknow_error_exception)
+        override val errorMessage: ResourceText = ResourceText.StringId(R.string.unknow_error_exception)
     ) : ApiException()
 
     class HttpApiException(
@@ -48,9 +51,9 @@ sealed class ApiException : IOException() {
         override val message: String,
     ) : ApiException() {
 
-        override val errorMessage: UiText
+        override val errorMessage: ResourceText
             get() {
-                return UiText.DynamicText(message)
+                return ResourceText.Plain(message)
             }
 
     }

@@ -64,10 +64,11 @@ fun ErrorScreenComponent(
             )
         }
 
-        if (showActionButton)
+        if (showActionButton) {
             Spacer(modifier = Modifier.padding(12.dp))
-        Button(onClick = { onActionButtonClicked() }) {
-            Text(text = actionButtonText)
+            Button(onClick = { onActionButtonClicked() }) {
+                Text(text = actionButtonText)
+            }
         }
     }
 }

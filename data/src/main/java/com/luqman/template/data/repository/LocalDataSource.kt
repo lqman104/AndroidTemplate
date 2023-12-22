@@ -1,5 +1,6 @@
 package com.luqman.template.data.repository
 
+import com.luqman.template.core.model.Resource
 import com.luqman.template.data.repository.model.Response
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -9,7 +10,7 @@ class LocalDataSource(
     private val dispatcher: CoroutineDispatcher
 ) : DataSource {
 
-    override suspend fun fetch(): List<Response> {
+    override suspend fun fetch(): Resource<List<Response>> {
         return withContext(dispatcher) {
             val list = buildList {
                 for (i in 1..10) {
@@ -17,7 +18,7 @@ class LocalDataSource(
                 }
             }
 
-            list
+            Resource.Success(list)
         }
     }
 }
