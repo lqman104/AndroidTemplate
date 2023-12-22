@@ -17,19 +17,19 @@ import retrofit2.Retrofit
 object RepositoryModule {
 
     @Provides
-    fun provideProvinceApiService(
+    fun provideApiService(
         retrofit: Retrofit
     ): SomeService = retrofit.create(SomeService::class.java)
 
     @Provides
     @LocalSource
-    fun provideProvinceLocalDataSource(): DataSource = LocalDataSource(
+    fun provideLocalDataSource(): DataSource = LocalDataSource(
         Dispatchers.IO
     )
 
     @Provides
     @RemoteSource
-    fun provideProvinceRemoteDataSource(
+    fun provideRemoteDataSource(
         someService: SomeService
     ): DataSource = RemoteDataSource(
         someService,
@@ -37,7 +37,7 @@ object RepositoryModule {
     )
 
     @Provides
-    fun provideProvinceRepository(
+    fun provideRepository(
         @RemoteSource remoteDataSource: DataSource,
         @LocalSource localDataSource: DataSource
     ): DataSource = DataRepository(

@@ -1,10 +1,4 @@
 import org.gradle.api.JavaVersion
-
-/*
- * Initiated by Rahmad Hidayat on 7/25/22, 11:12 PM
- * Copyright (c) Qasir 2022 All rights reserved.
- */
-
 object AppConfig {
     const val version = "1.0.0"
     const val versionCode = 1

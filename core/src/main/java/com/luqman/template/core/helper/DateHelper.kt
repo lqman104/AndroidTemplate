@@ -1,4 +1,4 @@
-package com.luqman.template.helper
+package com.luqman.template.core.helper
 
 import java.text.SimpleDateFormat
 import java.util.Date
